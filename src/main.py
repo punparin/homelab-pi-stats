@@ -1,10 +1,14 @@
+import os
 from flask import Flask, request, abort
 from Stats import *
 from json import dumps as jsonstring
 from waitress import serve
 
 app = Flask(__name__)
+
 stats = Stats()
+if os.getenv("ENV") == "local":
+    stats = Stats(temp_file="temp_file")
 
 @app.route("/api/stats", methods=['GET'])
 def get_stats():

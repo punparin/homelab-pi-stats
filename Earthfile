@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64 python:3.5
+FROM --platform=linux/arm64 python:3.9
 
 ARG IMAGE=punparin/homelab-pi-stats
 ARG TAG=latest

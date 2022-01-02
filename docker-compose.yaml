@@ -6,6 +6,8 @@ services:
         image: punparin/homelab-pi-stats:local
         env_file:
             - .env
+        volumes:
+            - ./temp_file:/app/temp_file
         ports:
             - 3000:3000
         restart: unless-stopped
