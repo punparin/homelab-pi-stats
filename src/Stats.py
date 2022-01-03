@@ -8,6 +8,7 @@ class Stats:
     def get_cpu_temp(self):
         with open(self.temp_file, encoding = 'utf-8') as f:
             cpu_temp = f.read()
+            f.close()
             return round(float(cpu_temp)/1000, 2)
 
     def get_cpu_percent(self):
@@ -16,14 +17,14 @@ class Stats:
 
     def get_memory_used(self):
         memory = psutil.virtual_memory()
-        available = round(memory.available/1024.0/1024.0,1)
-        total = round(memory.total/1024.0/1024.0,1)
+        available = round(memory.available/1024.0/1024.0/1024.0,1)
+        total = round(memory.total/1024.0/1024.0/1024.0,1)
         memory_used = round(total - available,1)
         return memory_used
 
     def get_memory_total(self):
         memory = psutil.virtual_memory()
-        memory_total = round(memory.total/1024.0/1024.0,1)
+        memory_total = round(memory.total/1024.0/1024.0/1024.0,1)
         return memory_total
 
     def get_memory_percent(self):
