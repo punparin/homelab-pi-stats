@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, abort
+from flask import Flask, request, abort, Response
 from Stats import *
 from json import dumps as jsonstring
 from waitress import serve
@@ -16,6 +16,11 @@ def get_stats():
     result = jsonstring(raw_result.__dict__)
 
     return result
+
+@app.route('/health', methods=['GET'])
+def health():
+    return Response(response="OK", status=200)
+
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=3000)
